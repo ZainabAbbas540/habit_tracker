@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="title">
+        <h1>Study Planner</h1>
+        <p class="subtitle">Organize tasks, track progress & meet your goals✨</p>
+      </div>
+
+      <div class="header-actions">
+        <button id="exportBtn" class="btn outline">Export</button>
+        <label class="btn outline import-label">
+          Import
+          <input id="importFile" type="file" accept=".json" />
+        </label>
+        <button id="addTaskBtn" class="btn primary">+ Add Task</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="sidebar">
+        <div class="card stat-card">
+          <div class="stat-title">Progress</div>
+          <div class="stat-body">
+            <div class="progress-wrap">
+              <div id="progressBar" class="progress-bar"><span id="progressFill"></span></div>
+              <div class="progress-text"><span id="progressPercent">0%</span> complete</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card filters-card">
+          <h3>Filters</h3>
+          <div class="filters">
+            <label>
+              <input type="radio" name="filter" value="all" checked />
+              <span>All</span>
+            </label>
+            <label>
+              <input type="radio" name="filter" value="active" />
+              <span>Active</span>
+            </label>
+            <label>
+              <input type="radio" name="filter" value="completed" />
+              <span>Completed</span>
+            </label>
+            <label>
+              <input type="radio" name="filter" value="overdue" />
+              <span>Overdue</span>
+            </label>
+          </div>
+
+          <h4>Sort</h4>
+          <select id="sortSelect">
+            <option value="created_desc">Newest</option>
+            <option value="due_asc">Due soon</option>
+            <option value="priority_desc">Priority</option>
+          </select>
+
+
+
+          <h4 class="search-label">Search</h4>
+          <input id="searchInput" class="search-input" placeholder=" 🔍 Search by title or tag" />
+
+
+        </div>
+
+        <div class="card tips-card">
+          <h3>Tips</h3>
+          <ul>
+            <li>Break big tasks into smaller steps</li>
+            <li>Set realistic deadlines</li>
+            <li>Use tags for subjects (e.g., CS50, AI)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content">
+        <div id="tasksList" class="tasks-list"></div>
+      </section>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Task</h2>
+          <button id="modalClose" class="btn icon">✕</button>
+        </div>
+
+        <form id="taskForm" class="task-form">
+          <label>Title <input id="taskTitle" required maxlength="80" /></label>
+          <label>Description <textarea id="taskDesc" rows="3" maxlength="500"></textarea></label>
+
+          <div class="row">
+            <label>Due date <input id="taskDue" type="date" /></label>
+
+            <label>Priority
+              <select id="taskPriority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+          </div>
+
+          <label>Tags (comma separated) <input id="taskTags" placeholder="e.g., CS50, AI" /></label>
+
+          <div class="form-actions">
+            <button type="button" id="cancelBtn" class="btn outline">Cancel</button>
+            <button type="submit" class="btn primary">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <small>© 2025 Zainab Abbas. All rights reserved.</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
